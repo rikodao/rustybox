@@ -1,7 +1,8 @@
-mod bin;
-pub fn controller(command: &str) {
-    match command {
-        "ls" => bin::ls::exe(Some(".".to_string())),
-        _ => println!("Not Defined"),
-    }
+use std::path::PathBuf;
+
+use bin::ls::LsOption;
+pub mod bin;
+
+pub fn ls(path: Option<PathBuf>) {
+    bin::ls::Ls::new(path, LsOption::new().build()).handle();
 }
